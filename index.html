@@ -88,12 +88,16 @@ canvas {
     left: 0;
     pointer-events: none;
 }
+
+/* hide player */
+#musicPlayer {
+    display: none;
+}
 </style>
 </head>
 
 <body>
 
-<!-- MAIN PAGE -->
 <div id="mainPage">
 
 <h1>💖 I'm Really Sorry 💖</h1>
@@ -102,28 +106,25 @@ canvas {
 
 <br>
 
-<!-- Name already filled -->
-<input id="nameInput" value="Jackie">
+<input value="Jackie">
 
 <br>
 
-<!-- Hey I’m sorry for last night, if I did something to upset you I feel bad i know I might be overreacting but I still feel bad if I made you upset and I rather overreacted and apologize than to not apologize I hope you accept my apology if I did make you upset  -->
-<textarea id="textInput" rows="4" placeholder="PASTE YOUR APOLOGY HERE 💌"></textarea><br>
+<textarea id="textInput" rows="4">
+Hey I’m sorry for last night, if I did something to upset you I feel bad. I know I might be overreacting but I still feel bad if I made you upset. I’d rather overreact and apologize than not apologize. I hope you accept my apology if I did make you upset 💖
+</textarea><br>
 
 <button onclick="displayText()">Show Message 💌</button>
 
 <div id="paragraphDisplay"></div>
 
-<iframe id="youtubePlayer"
-    width="400"
-    height="225"
-    src="https://www.youtube.com/embed/Ayp-tWME32s"
-    frameborder="0"
-    allow="autoplay"
-    allowfullscreen>
-</iframe><br>
+<!-- AUDIO ONLY (hidden video) -->
+<iframe id="musicPlayer"
+src="https://www.youtube.com/embed/Ayp-tWME32s?enablejsapi=1"
+allow="autoplay">
+</iframe>
 
-<button onclick="playVideo()">Play Song 🎵</button>
+<button onclick="playMusic()">Play Song 🎵</button>
 
 <h2>Do you accept my apology? 💕</h2>
 
@@ -132,7 +133,6 @@ canvas {
 
 </div>
 
-<!-- CELEBRATION -->
 <div id="celebrationPage">
 
 <h1>🎉 YAYYYY 💖</h1>
@@ -156,16 +156,17 @@ let personName = "Jackie";
 
 function displayText() {
     let text = document.getElementById("textInput").value;
-
     document.getElementById("paragraphDisplay").innerText =
         personName + ", " + text;
 }
 
-function playVideo() {
-    let iframe = document.getElementById("youtubePlayer");
-    iframe.src += "?autoplay=1";
+// PLAY MUSIC
+function playMusic() {
+    let player = document.getElementById("musicPlayer");
+    player.src = "https://www.youtube.com/embed/Ayp-tWME32s?autoplay=1";
 }
 
+// YES CLICK
 function yesClicked() {
     document.getElementById("mainPage").style.display = "none";
     document.getElementById("celebrationPage").style.display = "block";
@@ -176,6 +177,7 @@ function yesClicked() {
     startConfetti();
 }
 
+// NO BUTTON RUNS
 function moveButton() {
     let btn = document.getElementById("noBtn");
     btn.style.position = "absolute";
@@ -183,6 +185,7 @@ function moveButton() {
     btn.style.top = Math.random() * window.innerHeight + "px";
 }
 
+// HEARTS
 setInterval(() => {
     let heart = document.createElement("div");
     heart.className = "heart";
@@ -192,6 +195,7 @@ setInterval(() => {
     setTimeout(() => heart.remove(), 6000);
 }, 500);
 
+// SPARKLES
 setInterval(() => {
     let s = document.createElement("div");
     s.className = "sparkle";
@@ -201,6 +205,7 @@ setInterval(() => {
     setTimeout(() => s.remove(), 2000);
 }, 200);
 
+// CONFETTI
 function startConfetti() {
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
