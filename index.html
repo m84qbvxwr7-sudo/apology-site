@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>I'm Sorry</title>
 
 <style>
@@ -11,21 +12,28 @@ body {
     background: linear-gradient(45deg, pink, hotpink, #ffccff);
     color: #ff1493;
     overflow-x: hidden;
+    margin: 0;
+    padding: 10px;
 }
 
 #celebrationPage { display: none; }
+
+h1 { font-size: 28px; }
+h2 { font-size: 20px; }
 
 #paragraphDisplay {
     margin: 20px auto;
     padding: 15px;
     background: white;
     border-radius: 20px;
-    width: 60%;
+    width: 90%;
+    max-width: 500px;
     box-shadow: 0 0 15px hotpink;
+    font-size: 16px;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 18px;
     margin: 10px;
     border-radius: 20px;
     border: none;
@@ -33,11 +41,20 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
+    width: 80%;
+    max-width: 250px;
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 img {
-    width: 180px;
-    margin: 10px;
+    width: 70%;
+    max-width: 220px;
+    height: auto;
+    margin: 10px auto;
+    display: block;
     border-radius: 20px;
 }
 
@@ -47,10 +64,10 @@ img {
 
 @keyframes bounce {
     from { transform: translateY(0); }
-    to { transform: translateY(-20px); }
+    to { transform: translateY(-15px); }
 }
 
-/* stars */
+/* floating stars */
 .star {
     position: fixed;
     bottom: -50px;
@@ -62,10 +79,11 @@ img {
     100% { transform: translateY(-800px); opacity: 0; }
 }
 
+/* sparkles */
 .sparkle {
     position: fixed;
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     background: white;
     border-radius: 50%;
     animation: sparkle 2s infinite;
@@ -90,11 +108,12 @@ canvas {
 
 <body>
 
+<!-- MAIN PAGE -->
 <div id="mainPage">
 
 <h1>I'm Really Sorry</h1>
 
-<!-- WORKING HELLO KITTY IMAGE -->
+<!-- IMPORTANT: replace with your own image file if needed -->
 <img src="hellokitty.png">
 
 <p>Jackie,</p>
@@ -103,7 +122,7 @@ canvas {
 Hey I’m sorry for last night, if I did something to upset you I feel bad. I know I might be overreacting but I still feel bad if I made you upset. I’d rather overreact and apologize than not apologize. I hope you accept my apology if I did make you upset.
 </div>
 
-<!-- AUDIO -->
+<!-- MUSIC -->
 <iframe id="musicPlayer"
 src="https://www.youtube.com/embed/Ayp-tWME32s?enablejsapi=1"
 allow="autoplay">
@@ -118,14 +137,15 @@ allow="autoplay">
 
 </div>
 
+<!-- CELEBRATION PAGE -->
 <div id="celebrationPage">
 
 <h1>YAY</h1>
 <p id="customMessage"></p>
 
-<img src="https://i.imgur.com/3ZQ3Z9Q.png">
+<img src="hellokitty.png">
 
-<br><br>
+<br>
 
 <img src="funny1.jpg" class="bounce">
 <img src="funny2.jpg" class="bounce">
@@ -139,11 +159,13 @@ allow="autoplay">
 <script>
 let personName = "Jackie";
 
+// MUSIC
 function playMusic() {
     let player = document.getElementById("musicPlayer");
     player.src = "https://www.youtube.com/embed/Ayp-tWME32s?autoplay=1";
 }
 
+// YES BUTTON
 function yesClicked() {
     document.getElementById("mainPage").style.display = "none";
     document.getElementById("celebrationPage").style.display = "block";
@@ -154,6 +176,7 @@ function yesClicked() {
     startConfetti();
 }
 
+// RUNNING NO BUTTON
 function moveButton() {
     let btn = document.getElementById("noBtn");
     btn.style.position = "absolute";
@@ -161,7 +184,7 @@ function moveButton() {
     btn.style.top = Math.random() * window.innerHeight + "px";
 }
 
-/* stars */
+// FLOATING STARS
 setInterval(() => {
     let star = document.createElement("div");
     star.className = "star";
@@ -172,7 +195,7 @@ setInterval(() => {
     setTimeout(() => star.remove(), 6000);
 }, 400);
 
-/* sparkles */
+// SPARKLES
 setInterval(() => {
     let s = document.createElement("div");
     s.className = "sparkle";
@@ -182,6 +205,7 @@ setInterval(() => {
     setTimeout(() => s.remove(), 2000);
 }, 200);
 
+// CONFETTI
 function startConfetti() {
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
