@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>I'm Sorry 💖</title>
+<title>I'm Sorry</title>
 
 <style>
 body {
@@ -15,7 +15,7 @@ body {
 
 #celebrationPage { display: none; }
 
-textarea, input {
+textarea {
     width: 60%;
     padding: 10px;
     border-radius: 15px;
@@ -58,11 +58,12 @@ img {
     to { transform: translateY(-20px); }
 }
 
-.heart {
+/* floating stars */
+.star {
     position: fixed;
     bottom: -50px;
-    font-size: 24px;
     animation: floatUp 6s linear infinite;
+    opacity: 0.8;
 }
 
 @keyframes floatUp {
@@ -89,7 +90,7 @@ canvas {
     pointer-events: none;
 }
 
-/* hide player */
+/* hide music player */
 #musicPlayer {
     display: none;
 }
@@ -100,25 +101,24 @@ canvas {
 
 <div id="mainPage">
 
-<h1>💖 I'm Really Sorry 💖</h1>
+<h1>I'm Really Sorry</h1>
 
-<img src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
-
-<br>
-
-<input value="Jackie">
+<!-- FIXED HELLO KITTY IMAGE -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Hello_Kitty.png">
 
 <br>
+
+<p>Jackie,</p>
 
 <textarea id="textInput" rows="4">
-Hey I’m sorry for last night, if I did something to upset you I feel bad. I know I might be overreacting but I still feel bad if I made you upset. I’d rather overreact and apologize than not apologize. I hope you accept my apology if I did make you upset 💖
+Hey I’m sorry for last night, if I did something to upset you I feel bad. I know I might be overreacting but I still feel bad if I made you upset. I’d rather overreact and apologize than not apologize. I hope you accept my apology if I did make you upset.
 </textarea><br>
 
-<button onclick="displayText()">Show Message 💌</button>
+<button onclick="displayText()">Show Message</button>
 
 <div id="paragraphDisplay"></div>
 
-<!-- AUDIO ONLY (hidden video) -->
+<!-- AUDIO -->
 <iframe id="musicPlayer"
 src="https://www.youtube.com/embed/Ayp-tWME32s?enablejsapi=1"
 allow="autoplay">
@@ -126,19 +126,19 @@ allow="autoplay">
 
 <button onclick="playMusic()">Play Song 🎵</button>
 
-<h2>Do you accept my apology? 💕</h2>
+<h2>Do you accept my apology?</h2>
 
-<button onclick="yesClicked()">Yes 💖</button>
-<button id="noBtn" onmouseover="moveButton()">No 😭</button>
+<button onclick="yesClicked()">Yes</button>
+<button id="noBtn" onmouseover="moveButton()">No</button>
 
 </div>
 
 <div id="celebrationPage">
 
-<h1>🎉 YAYYYY 💖</h1>
+<h1>YAY</h1>
 <p id="customMessage"></p>
 
-<img src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Hello_Kitty.png">
 
 <br><br>
 
@@ -160,24 +160,21 @@ function displayText() {
         personName + ", " + text;
 }
 
-// PLAY MUSIC
 function playMusic() {
     let player = document.getElementById("musicPlayer");
     player.src = "https://www.youtube.com/embed/Ayp-tWME32s?autoplay=1";
 }
 
-// YES CLICK
 function yesClicked() {
     document.getElementById("mainPage").style.display = "none";
     document.getElementById("celebrationPage").style.display = "block";
 
     document.getElementById("customMessage").innerText =
-        personName + " accepted my apology 😭💖";
+        personName + " accepted the apology";
 
     startConfetti();
 }
 
-// NO BUTTON RUNS
 function moveButton() {
     let btn = document.getElementById("noBtn");
     btn.style.position = "absolute";
@@ -185,17 +182,18 @@ function moveButton() {
     btn.style.top = Math.random() * window.innerHeight + "px";
 }
 
-// HEARTS
+/* floating stars */
 setInterval(() => {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-}, 500);
+    let star = document.createElement("div");
+    star.className = "star";
+    star.innerHTML = "✦";
+    star.style.left = Math.random() * window.innerWidth + "px";
+    star.style.fontSize = (Math.random() * 10 + 14) + "px";
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 6000);
+}, 400);
 
-// SPARKLES
+/* sparkles */
 setInterval(() => {
     let s = document.createElement("div");
     s.className = "sparkle";
@@ -205,7 +203,6 @@ setInterval(() => {
     setTimeout(() => s.remove(), 2000);
 }, 200);
 
-// CONFETTI
 function startConfetti() {
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");
