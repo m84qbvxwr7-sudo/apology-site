@@ -15,14 +15,6 @@ body {
 
 #celebrationPage { display: none; }
 
-textarea {
-    width: 60%;
-    padding: 10px;
-    border-radius: 15px;
-    border: 2px solid hotpink;
-    margin: 5px;
-}
-
 #paragraphDisplay {
     margin: 20px auto;
     padding: 15px;
@@ -58,7 +50,7 @@ img {
     to { transform: translateY(-20px); }
 }
 
-/* floating stars */
+/* stars */
 .star {
     position: fixed;
     bottom: -50px;
@@ -90,7 +82,6 @@ canvas {
     pointer-events: none;
 }
 
-/* hide music player */
 #musicPlayer {
     display: none;
 }
@@ -103,20 +94,14 @@ canvas {
 
 <h1>I'm Really Sorry</h1>
 
-<!-- FIXED HELLO KITTY IMAGE -->
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Hello_Kitty.png">
-
-<br>
+<!-- WORKING HELLO KITTY IMAGE -->
+<img src="https://i.imgur.com/3ZQ3Z9Q.png">
 
 <p>Jackie,</p>
 
-<textarea id="textInput" rows="4">
+<div id="paragraphDisplay">
 Hey I’m sorry for last night, if I did something to upset you I feel bad. I know I might be overreacting but I still feel bad if I made you upset. I’d rather overreact and apologize than not apologize. I hope you accept my apology if I did make you upset.
-</textarea><br>
-
-<button onclick="displayText()">Show Message</button>
-
-<div id="paragraphDisplay"></div>
+</div>
 
 <!-- AUDIO -->
 <iframe id="musicPlayer"
@@ -138,7 +123,7 @@ allow="autoplay">
 <h1>YAY</h1>
 <p id="customMessage"></p>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Hello_Kitty.png">
+<img src="https://i.imgur.com/3ZQ3Z9Q.png">
 
 <br><br>
 
@@ -153,12 +138,6 @@ allow="autoplay">
 
 <script>
 let personName = "Jackie";
-
-function displayText() {
-    let text = document.getElementById("textInput").value;
-    document.getElementById("paragraphDisplay").innerText =
-        personName + ", " + text;
-}
 
 function playMusic() {
     let player = document.getElementById("musicPlayer");
@@ -182,7 +161,7 @@ function moveButton() {
     btn.style.top = Math.random() * window.innerHeight + "px";
 }
 
-/* floating stars */
+/* stars */
 setInterval(() => {
     let star = document.createElement("div");
     star.className = "star";
